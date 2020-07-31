@@ -52,19 +52,35 @@ app.get('/api/persons/:id', (request, response) => {
   }
 })
 
+// I found (thanks to stackoverflow) a way to guarantee no duplicate id's are created.
 const generateId = () => {
-  const maxId = persons.length > 0 ? Math.max(...persons.map(n => n.id)) : 0
-  return maxId + 1
+  let randoms = []
+  while (randoms.length < persons.length + 1) {
+    let id = Math.ceil(1 + Math.floor(Math.random() * 100))
+    if (randoms.indexOf(id) == -1) {
+      randoms.push(id)
+      return id
+    }
+  }
 }
 
 app.post('/api/persons', (request, response) => {
   const body = request.body
   if (!body.name || !body.number) {
     return response.status(400).json({
-      error: 'content missing',
+      error: 'name or number missing',
     })
   }
 
+  if (
+    persons.find(
+      person => person.name.toLowerCase() === body.name.toLowerCase()
+    )
+  ) {
+    return response.status(401).json({
+      error: 'duplicate exists',
+    })
+  }
   const person = {
     name: body.name,
     number: body.number,

@@ -1,7 +1,7 @@
 GET http://localhost:3008/api/persons
 ###
 
-GET http://localhost:3008/api/persons/5
+GET http://localhost:3008/api/persons/51
 ###
 POST http://localhost:3008/api/persons
 Content-Type: application/json
@@ -11,4 +11,4 @@ Content-Type: application/json
     "number":"1234556"
 }
 ###
-DELETE http://localhost:3008/api/persons/5
+DELETE http://localhost:3008/api/persons/4
