@@ -1,8 +1,10 @@
 const express = require('express')
+const morgan = require('morgan')
 const app = express()
 
 app.use(express.json())
 
+app.use(morgan('tiny'))
 let persons = [
   {
     name: 'Arto Hellas',
@@ -35,7 +37,6 @@ app.get('/info', (req, res) => {
   res.send(
     `<h1>Phonebook has info for ${persons.length} people </h1> <br /> <h3> ${date}</h3> `
   )
-  console.log('people?', persons.length)
 })
 
 app.get('/api/persons', (req, res) => {
