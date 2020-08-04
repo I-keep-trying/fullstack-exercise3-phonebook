@@ -47,8 +47,8 @@ app.get('/api/persons/:id', (request, response) => {
 
 app.post('/api/persons', (request, response) => {
   const body = request.body
-
-  if (body.name === undefined || body.number === undefined) {
+console.log('post body', body)
+  if (body.name === undefined || body.number === undefined || body.name.length === 0 || body.number.length === 0) {
     return response.status(400).json({
       error: 'name or number missing',
     })
@@ -64,11 +64,11 @@ app.post('/api/persons', (request, response) => {
   })
 })
 
-app.delete('/api/persons/:id', (request, response) => {
-  const id = Number(request.params.id)
-  persons = persons.filter(person => person.id !== id)
-
+app.delete('/api/persons/:id', async (request, response) => {
+  console.log('delete person', request.params)
+  await Person.findByIdAndRemove(request.params.id)
   response.status(204).end()
+
 })
 
 const PORT = process.env.PORT
