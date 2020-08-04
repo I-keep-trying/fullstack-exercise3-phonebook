@@ -1,7 +1,7 @@
 GET http://localhost:3008/api/persons
 ###
 
-GET http://localhost:3008/api/persons/51
+GET http://localhost:3008/api/persons/5f2873f0c885d329a830140d
 ###
 POST http://localhost:3008/api/persons
 Content-Type: application/json
@@ -9,6 +9,14 @@ Content-Type: application/json
 {
     "name":"dorothy687",
     "number":"12345560"
+}
+###
+PUT http://localhost:3008/api/persons/5f2873f0c885d329a830140d
+Content-Type: application/json
+
+{
+    "name":"Eileen Perry",
+    "number":"12345560789"
 }
 ###
 DELETE http://localhost:3008/api/persons/5f286267be074426c47efc0b
