@@ -65,7 +65,6 @@ console.log('post body', body)
 })
 
 app.delete('/api/persons/:id', async (request, response) => {
-  console.log('delete person', request.params)
   await Person.findByIdAndRemove(request.params.id)
   response.status(204).end()
 
