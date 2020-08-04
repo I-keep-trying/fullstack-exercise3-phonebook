@@ -32,12 +32,11 @@ app.get('/api/info', (req, res) => {
   Person.find({}).then(persons => {
     const count = persons.length
     const date = new Date()
-    res.json(
+    res.send(
       `<div>
         <div>Phonebook has info for ${count} people</div>
         <div>${date}</div>
       </div>`
-      
     )
   })
 })
