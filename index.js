@@ -3,7 +3,8 @@ const express = require('express')
 const morgan = require('morgan')
 const app = express()
 const Person = require('./models/people')
-
+const cors = require('cors')
+app.use(cors())
 app.use(express.json())
 app.use(express.static('build'))
 
@@ -24,6 +25,20 @@ app.get('/', (req, res) => {
 app.get('/api/persons', (req, res) => {
   Person.find({}).then(persons => {
     res.json(persons)
+  })
+})
+
+app.get('/api/info', (req, res) => {
+  Person.find({}).then(persons => {
+    const count = persons.length
+    const date = new Date()
+    res.json(
+      `<div>
+        <div>Phonebook has info for ${count} people</div>
+        <div>${date}</div>
+      </div>`
+      
+    )
   })
 })
 

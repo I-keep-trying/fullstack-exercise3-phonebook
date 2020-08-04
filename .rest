@@ -1,6 +1,7 @@
 GET http://localhost:3008/api/persons
 ###
-
+GET http://localhost:3008/api/info
+###
 GET http://localhost:3008/api/persons/5f2873f0c885d329a830140d
 ###
 POST http://localhost:3008/api/persons
