@@ -8,8 +8,8 @@ POST http://localhost:3008/api/persons
 Content-Type: application/json
 
 {
-    "name":"dorothy687",
-    "number":"12345560"
+    "name":"d",
+    "number":"1"
 }
 ###
 PUT http://localhost:3008/api/persons/5f2873f0c885d329a830140d

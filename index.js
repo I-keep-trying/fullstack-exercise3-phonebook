@@ -65,28 +65,21 @@ app.get('/api/persons/:id', (request, response, next) => {
   }
 } */
 
-app.post('/api/persons', (request, response) => {
+app.post('/api/persons', (request, response, next) => {
   const body = request.body
-  console.log('post body', body)
-  if (
-    body.name === undefined ||
-    body.number === undefined ||
-    body.name.length === 0 ||
-    body.number.length === 0
-  ) {
-    return response.status(400).json({
-      error: 'name or number missing',
-    })
-  }
 
   const person = new Person({
     name: body.name,
     number: body.number,
   })
 
-  person.save().then(savedPerson => {
-    response.json(savedPerson)
-  })
+  person
+    .save()
+    .then(savedPerson => {
+      response.json(savedPerson)
+    })
+    .catch(error => {
+      response.send( error)})
 })
 
 app.put('/api/persons/:id', (request, response, next) => {
